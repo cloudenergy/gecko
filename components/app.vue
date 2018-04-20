@@ -8,7 +8,6 @@ export default {
 		};
 	},
 	render() {
-        console.log(this.$route)
         const matched = this.$route.matched;
 		const last = matched[matched.length - 1];
 

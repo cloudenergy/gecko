@@ -4,7 +4,7 @@ const publicPath = process.env.ZFT_PUBLIC_PATH || '/';
 module.exports = {
     "proxy": {
         "/api": {
-            "target": proxy || "http://mock.example.com",
+            "target":  "https://api.douban.com/v2",
             pathRewrite: {
                 '^/api': ''
             },

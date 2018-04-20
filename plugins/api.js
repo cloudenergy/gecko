@@ -1,25 +1,30 @@
 /*eslint no-unused-vars: 0 */
 
-import { makeGet, makePost, setup, makePut, makeDelete, decorateMaker, } from "@/api";
+import { makeGet, makePost, setup, makePut, makeDelete, decorateMaker, makePatch, makeResource,} from "@/api";
+import { isFunc } from '~/utils';
 
-const apis = {
-	home: makeGet("/api/test")
-};
+import router from '@/router';
+import axios from 'axios';
 
-const [get, post, put, del] = 
-    [makeGet, makePost, makePut, makeDelete].map(action =>{
+
+const CancelToken = axios.CancelToken;
+let source = CancelToken.source();
+
+const [get, post, put, del, patch] = 
+    [makeGet, makePost, makePut, makeDelete, makePatch].map(action =>{
 		return decorateMaker(action, interceptor)
     });
 
-const resource = (url, actions) => {
-	if (actions) {
-		Object.keys(actions).map(action => (actions[action].url = url));
-	}
+const resource = function(url, actions)  {
+	// if (actions) {
+	// 	Object.keys(actions).map(action => (actions[action].url = url));
+	// }
 	return makeResource(url, actions, {
 		GET: get,
 		POST: post,
 		PUT: put,
-		DELETE: del
+		DELETE: del,
+		PATCH: patch
 	});
 };
 
@@ -40,7 +45,7 @@ const interceptor = function({ response, message }) {
 	}
 	return Promise.reject(data);
 };
-let baseURL = '/api/v1.0';
+let baseURL = 'https://api.douban.com/v2/';
 function responseHandler({ data, errcode, errmsg }) {
 	if (errcode === 0) {
 		return data;
@@ -52,23 +57,40 @@ function responseHandler({ data, errcode, errmsg }) {
 
 setup({
 	baseURL,
-	withCredentials: true,
-	timeout: 100000,
+	cancelToken: source.token,
 	headers: {
-		"content-type": "application/json"
+		'content-type': 'application/json'
 	},
 	interceptors: {
-		response: responseHandler
+		reponse(res) {
+			const { code, message, data } = res;
+			if (code && code !== 0) {
+				Message({
+					message: message,
+					type: 'error'
+				});
+
+				return Promise.reject(message);
+			}
+
+			return data;
+		}
 	}
 });
 
+const apis = {
+	houses: resource('/book/{projectId}'),
+};
+
 /**
  * 通过接口名称返回请求对象
- * @param {string} entry
+ * @param {string} entry	接口名称
+ * @param {object} data  query/body 参数
+ * @param {object} params url 参数
  */
 export default function (entry, data, params) {
-    // entry - string, array, function
-
+		// entry - string, array, function
+		console.log(entry, data, params )
 	if (apis.hasOwnProperty(entry)) {
 		return isFunc(apis[entry]) ? apis[entry](data, params) : apis[entry];
 	}
@@ -76,4 +98,4 @@ export default function (entry, data, params) {
     throw "Entry not defined";
 }
 
-export const getApi = name => apis[name];
+// export const getApi = name => apis[name];
