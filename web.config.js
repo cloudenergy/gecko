@@ -1,10 +1,9 @@
 const port = process.env.BLADE_PORT || 8080
-const proxy = process.env.BLADE_PROXY;
 const publicPath = process.env.ZFT_PUBLIC_PATH || '/';
 module.exports = {
-    "proxy": {
+    proxy: {
         "/api": {
-            "target":  "https://api.douban.com/v2",
+            target:  "http://testzft.cloudenergy.me/api",
             pathRewrite: {
                 '^/api': ''
             },
@@ -29,7 +28,7 @@ module.exports = {
     build: {
         publicPath
     },
-    // vuex: '~/plugins/route',
+    vuex: '~/plugins/route',
     router: {
         base: "/"
     },

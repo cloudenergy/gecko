@@ -10,23 +10,6 @@ import axios from 'axios';
 const CancelToken = axios.CancelToken;
 let source = CancelToken.source();
 
-const [get, post, put, del, patch] = 
-    [makeGet, makePost, makePut, makeDelete, makePatch].map(action =>{
-		return decorateMaker(action, interceptor)
-    });
-
-const resource = function(url, actions)  {
-	// if (actions) {
-	// 	Object.keys(actions).map(action => (actions[action].url = url));
-	// }
-	return makeResource(url, actions, {
-		GET: get,
-		POST: post,
-		PUT: put,
-		DELETE: del,
-		PATCH: patch
-	});
-};
 
 const interceptor = function({ response, message }) {
 	const { status, data } = response || {};
@@ -45,7 +28,25 @@ const interceptor = function({ response, message }) {
 	}
 	return Promise.reject(data);
 };
-let baseURL = 'https://api.douban.com/v2/';
+
+const [get, post, put, del, patch] = 
+    [makeGet, makePost, makePut, makeDelete, makePatch].map(action =>{
+		return decorateMaker(action, interceptor)
+    });
+
+const resource = function(url, actions)  {
+	return makeResource(url, actions, {
+		GET: get,
+		POST: post,
+		PUT: put,
+		DELETE: del,
+		PATCH: patch
+	});
+};
+
+
+let baseURL = '/api/v1.0';
+console.log(baseURL)
 function responseHandler({ data, errcode, errmsg }) {
 	if (errcode === 0) {
 		return data;
@@ -79,7 +80,7 @@ setup({
 });
 
 const apis = {
-	houses: resource('/book/{projectId}'),
+	userInfoChange: resource('/login')
 };
 
 /**
@@ -90,7 +91,6 @@ const apis = {
  */
 export default function (entry, data, params) {
 		// entry - string, array, function
-		console.log(entry, data, params )
 	if (apis.hasOwnProperty(entry)) {
 		return isFunc(apis[entry]) ? apis[entry](data, params) : apis[entry];
 	}

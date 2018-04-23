@@ -1,31 +1,22 @@
 <template>
-    <div>
-       1
-    </div>
+	<div>
+		<topPrompt />
+		<selectTable/>
+	</div>
 </template>
 
 <script>
-    export default {
-    	data() {
-    		return {
-    			links: [
-    				{ url: '/houses', text: '房源管理' }
-    			]
-    		};
-		},
-		created() {
-			console.log(1)
-			this.$model('houses')
-			.query({}, {projectId: '4866934'})
-			.then(res=>{
-				console.log(res)
-			})
-			.catch(err=>{
-				console.log(err)
-			})
-			console.log(2)
-		}
-    };
+import { topPrompt, selectTable } from '../../modules/house/index';
+export default {
+	components: {
+		topPrompt,
+		selectTable
+	},
+	data() {
+		return {};
+	},
+	created() {}
+};
 </script>
 
 <style>

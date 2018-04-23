@@ -1,6 +1,8 @@
-@import "./less/base";
+@import './less/base';
+@import './less/maseui';
 
-html, body {
+html,
+body {
 	height: 100%;
 	user-select: none;
 }
@@ -11,9 +13,29 @@ html, body {
 
 body {
 	width: 100%;
-	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	font-family: STHeiti, -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+		Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+		'微软雅黑', Arial, sans-serif;
 }
 
 .clearfix {
 	.clearfix();
+}
+
+// flex
+.flex {
+	display: flex;
+}
+.flex.aline {
+	align-items: center;
+}
+
+// point
+.point {
+	cursor: pointer;
+}
+
+// 粗体
+.bold {
+	font-family: 'Arial Black', Arial, sans-serif;
 }
