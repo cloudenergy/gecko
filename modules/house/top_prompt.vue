@@ -85,6 +85,7 @@ export default {
 		background: #fff;
 		box-shadow: 0 0 7px #888888;
 		padding: 10px;
+		transition: all 0.2s;
 		.header {
 			flex-direction: row;
 			justify-content: space-between;
@@ -113,6 +114,10 @@ export default {
 			margin-top: 15px;
 			color: @gray;
 		}
+	}
+	.list-promit:hover {
+		box-shadow: 0 0 7px #4a90e2;
+		transform: scale(1.03, 1.03);
 	}
 }
 </style>

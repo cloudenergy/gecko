@@ -8,9 +8,8 @@ export default {
 		};
 	},
 	render() {
-        const matched = this.$route.matched;
+		const matched = this.$route.matched;
 		const last = matched[matched.length - 1];
-
 		if (!last) {
 			return <div class="page" />;
 		}

@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-        <site-nav />
+        <site-nav class="site-nav"/>
         <div class="main">
 			<slot />
 		</div>
@@ -25,6 +25,10 @@ export default {
 	font-size: 13px;
 	background: #f0f5fa;
 	width: 100%;
+	overflow-x: auto;
+	.site-nav {
+		min-width: 1900px;
+	}
 }
 
 .app,
