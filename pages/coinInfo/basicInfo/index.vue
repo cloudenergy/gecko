@@ -11,9 +11,7 @@
 <script>
 import { developHistory, basicInfo } from '~/modules/coinInfo/index';
 export default {
-	created() {
-		console.log(this.$route.query);
-	},
+	created() {},
 	computed: {},
 	components: {
 		developHistory,

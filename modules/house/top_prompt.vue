@@ -3,13 +3,13 @@
     <div v-for="(item, index) in data" :key="index" class="list-promit point" @click="into(item)">
       <!-- 顶部 -->
       <div class="flex aline header">
-        <div class="flex aline"><span class="bold">{{item.name}}</span><span class="type">{{item.type}}</span></div>
+        <div class="flex aline"><h3 class="bold">{{item.name}}</h3><span class="type">{{item.type}}</span></div>
         <div><span :class="Number(item.percent)>0?'rose':'fall'">{{item.percent}}%</span></div>
       </div>
       <!-- 价格 -->
-      <div class="bold price">
+      <h3 class="bold price">
         {{item.num}}
-      </div>
+      </h3>
       <!-- 成交量 -->
       <div class="volume"><span>成交量：{{item.volume}}</span></div>
     </div>

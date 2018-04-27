@@ -1,15 +1,22 @@
 /*eslint no-unused-vars: 0 */
 
-import { makeGet, makePost, setup, makePut, makeDelete, decorateMaker, makePatch, makeResource,} from "@/api";
+import {
+	makeGet,
+	makePost,
+	setup,
+	makePut,
+	makeDelete,
+	decorateMaker,
+	makePatch,
+	makeResource
+} from '@/api';
 import { isFunc } from '~/utils';
 
 import router from '@/router';
 import axios from 'axios';
 
-
 const CancelToken = axios.CancelToken;
 let source = CancelToken.source();
-
 
 const interceptor = function({ response, message }) {
 	const { status, data } = response || {};
@@ -29,12 +36,17 @@ const interceptor = function({ response, message }) {
 	return Promise.reject(data);
 };
 
-const [get, post, put, del, patch] = 
-    [makeGet, makePost, makePut, makeDelete, makePatch].map(action =>{
-		return decorateMaker(action, interceptor)
-    });
+const [get, post, put, del, patch] = [
+	makeGet,
+	makePost,
+	makePut,
+	makeDelete,
+	makePatch
+].map(action => {
+	return decorateMaker(action, interceptor);
+});
 
-const resource = function(url, actions)  {
+const resource = function(url, actions) {
 	return makeResource(url, actions, {
 		GET: get,
 		POST: post,
@@ -44,9 +56,7 @@ const resource = function(url, actions)  {
 	});
 };
 
-
 let baseURL = '/api/v1.0';
-console.log(baseURL)
 function responseHandler({ data, errcode, errmsg }) {
 	if (errcode === 0) {
 		return data;
@@ -89,13 +99,13 @@ const apis = {
  * @param {object} data  query/body 参数
  * @param {object} params url 参数
  */
-export default function (entry, data, params) {
-		// entry - string, array, function
+export default function(entry, data, params) {
+	// entry - string, array, function
 	if (apis.hasOwnProperty(entry)) {
 		return isFunc(apis[entry]) ? apis[entry](data, params) : apis[entry];
 	}
 
-    throw "Entry not defined";
+	throw 'Entry not defined';
 }
 
 // export const getApi = name => apis[name];

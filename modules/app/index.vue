@@ -1,9 +1,10 @@
 <template>
 	<div class="app">
-        <site-nav class="site-nav"/>
-        <div class="main">
+		<site-nav class="site-nav" />
+		<div class="main">
 			<slot />
 		</div>
+		<div class="bottom" style="height: 300px;text-align:center;margin-top:100px;font-size:40px">bottom</div>
 	</div>
 </template>
 <script>
@@ -20,8 +21,6 @@ export default {
 @top-height: 60px;
 
 .app {
-	display: flex;
-	flex-direction: column;
 	font-size: 13px;
 	background: #f0f5fa;
 	width: 100%;
@@ -34,8 +33,8 @@ export default {
 .app,
 .main {
 	position: relative;
-	height: 100%;
 }
+
 .main {
 	width: 1850px;
 	margin: 0 auto;
