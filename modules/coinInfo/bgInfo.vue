@@ -66,6 +66,7 @@ h2.bg {
 		padding: 0 40px;
 		.between {
 			justify-content: space-between;
+			margin-bottom: 15px;
 		}
 		> div {
 			width: 280px;

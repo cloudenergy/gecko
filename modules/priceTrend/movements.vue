@@ -1,7 +1,5 @@
 <template>
-  <div id="echarts" style="wi=dth:1050px;height:600px">
-
-  </div>
+  <div id="echarts" style="width:1050px;height:600px"></div>
 </template>
 
 <script>

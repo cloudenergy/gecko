@@ -4,7 +4,7 @@
 		<div class="main">
 			<slot />
 		</div>
-		<div class="bottom" style="height: 300px;text-align:center;margin-top:100px;font-size:40px">bottom</div>
+		<div class="bottom" style="height: 300px;text-align:center;margin-top:50px;font-size:40px;background:#fff;padding-top:50px;">bottom</div>
 	</div>
 </template>
 <script>
@@ -22,9 +22,8 @@ export default {
 
 .app {
 	font-size: 13px;
-	background: #f0f5fa;
+	background: @backgroundColor;
 	width: 100%;
-	overflow-x: auto;
 	.site-nav {
 		min-width: 1900px;
 	}

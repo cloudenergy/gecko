@@ -21,65 +21,75 @@
 				</el-table-column>
 				<el-table-column prop="name" label="名称">
 					<template slot-scope="scope">
-						<div class="coin-name point" @click="showCoinInfo(scope.row)">
-							{{scope.row.name}}
+						<div class="coin-name point flex aline" @click="showCoinInfo(scope.row)">
+							<img src="./icon.png" alt="" style="width:30px;height:30px">
+							<div style="margin-left:10px">
+								<p>{{scope.row.name}}</p>
+								<p>{{scope.row.name}}</p>
+							</div>
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="address" label="关注">
+				<el-table-column prop="address" label="关注" :render-header="focusHeader">
 				</el-table-column>
-				<el-table-column prop="hot" label="社区热度" sortable="custom">
+				<el-table-column prop="hot" label="社区热度" sortable="custom" :render-header="hotHeader">
 				</el-table-column>
-				<el-table-column prop="develop" label="开发活跃度"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="develop" label="开发活跃度"  sortable="custom" sort-change="hotChange" :render-header="developHeader">
 				</el-table-column>
-				<el-table-column prop="focus" label="公众关注度"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="focus" label="公众关注度"  sortable="custom" sort-change="hotChange" :render-header="focusPublicHeader">
 				</el-table-column>
-				<el-table-column prop="hold" label="持有账户"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="hold" label="持有账户"  sortable="custom" sort-change="hotChange" :render-header="holdHeader">
 				</el-table-column>
-				<el-table-column prop="price" label="价格"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="price" label="价格"  sortable="custom" sort-change="hotChange" :render-header="priceHeader">
 				</el-table-column>
-				<el-table-column prop="turnover" label="通用市值"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="turnover" label="通用市值"  sortable="custom" sort-change="hotChange" :render-header="turnoverHeader">
 				</el-table-column>
-				<el-table-column prop="number" label="流通量"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="number" label="流通量"  sortable="custom" sort-change="hotChange" :render-header="numberHeader">
 				</el-table-column>
-				<el-table-column prop="address" label="成交额(24H)"  sortable="custom" sort-change="hotChange">
+				<el-table-column prop="address" label="成交额(24H)"  sortable="custom" sort-change="hotChange" :render-header="clinchHeader">
 				</el-table-column>
-				<el-table-column prop="one_hour" label="1小时" class-name="none-margin" width="60" align="center">
+				<el-table-column prop="one_hour" label="1小时" class-name="none-margin" width="65" align="center" :render-header="onehourHeader">
 					<template slot-scope="scope">
 						<div :class="scope.row.one_hour_name">
-							{{scope.row.one_hour}}
+							{{scope.row.one_hour}}%
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="one_day" label="24小时" class-name="none-margin" width="60" align="center">
+				<el-table-column prop="one_day" label="24小时" class-name="none-margin" width="65" align="center" :render-header="onedayHeader">
 					<template slot-scope="scope">
 						<div :class="scope.row.one_day_name">
-							{{scope.row.one_day}}
+							{{scope.row.one_day}}%
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="seven_day" label="7天" class-name="none-margin" width="60" align="center">
+				<el-table-column prop="seven_day" label="7天" class-name="none-margin" width="65" align="center" :render-header="sevendayHeader">
 					<template slot-scope="scope">
 						<div :class="scope.row.seven_day_name">
-							{{scope.row.seven_day}}
+							{{scope.row.seven_day}}%
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="one_month" label="30天" class-name="none-margin" width="60" align="center">
+				<el-table-column prop="one_month" label="30天" class-name="none-margin" width="65" align="center" :render-header="onemonthHeader">
 					<template slot-scope="scope">
 						<div :class="scope.row.one_month_name">
-							{{scope.row.one_month}}
+							<div class="flex" style="flex-direction:column">
+								<div>
+									<p style="justify-content:center;" class="flex aline">{{scope.row.one_month}}%</p>
+								<p style="justify-content:center;" class="flex aline">￥5.1</p>
+								</div>
+								
+							</div>
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="three_month" label="90天" class-name="none-margin" width="60" align="center">
+				<el-table-column prop="three_month" label="90天" class-name="none-margin" width="65" align="center" :render-header="threemonthHeader">
 					<template slot-scope="scope">
 						<div :class="scope.row.three_month_name">
-							{{scope.row.three_month}}
+							{{scope.row.three_month}}%
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="address" label="7天价格" width="120" class-name="none-margin echarts">
+				<el-table-column prop="address" label="7天价格" width="120" class-name="none-margin echarts" :render-header="sevendayPriceHeader">
 					<template slot-scope="scope">
 						<div :id="scope.row.coinId" :style="{width: '120px', height: '60px'}"></div>
 					</template>
@@ -2139,6 +2149,217 @@ export default {
 		};
 	},
 	methods: {
+		focusHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">收藏自己关注的币</div>
+					<div class="toolTip point">关注</div>
+				</el-tooltip>
+			);
+		},
+		hotHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">
+						在电报群、推特等社交媒<br />
+						体的互动，反应出人们是<br />
+						否对该货币有着广泛的认<br />
+						识和共识。
+					</div>
+					<div class="toolTip point">社区热度</div>
+				</el-tooltip>
+			);
+		},
+		developHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">
+						通过对开发者的人数和公<br />
+						共源代码的提交情况可以<br />
+						反映出该币是够有着持续<br />
+						的开发和维护。<br />
+					</div>
+					<div class="toolTip point">开发活跃度</div>
+				</el-tooltip>
+			);
+		},
+		focusPublicHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">
+						根据在百度、谷歌等热门<br />
+						网站被公众搜索的次数来<br />
+						判断人们是否有兴趣来了<br />解此币。<br />
+					</div>
+					<div class="toolTip point">公众关注度</div>
+				</el-tooltip>
+			);
+		},
+		holdHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">持有该币的账户地址和数量。</div>
+					<div class="toolTip point">持有地址数量</div>
+				</el-tooltip>
+			);
+		},
+		priceHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">当前1个币的市场价格</div>
+					<div class="toolTip point">价格</div>
+				</el-tooltip>
+			);
+		},
+		turnoverHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">
+						市场流通的货币数量<br />×当前1个币的价格
+					</div>
+					<div class="toolTip point">流通市值</div>
+				</el-tooltip>
+			);
+		},
+		numberHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">市场流通的货币总数量</div>
+					<div class="toolTip point">流通数量</div>
+				</el-tooltip>
+			);
+		},
+		clinchHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去24小时的成交额</div>
+					<div class="toolTip point">成交额(24小时)</div>
+				</el-tooltip>
+			);
+		},
+		onehourHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去1小时的价格变化</div>
+					<div class="toolTip point">1小时</div>
+				</el-tooltip>
+			);
+		},
+		onedayHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去1天的价格变化</div>
+					<div class="toolTip point">24小时</div>
+				</el-tooltip>
+			);
+		},
+		sevendayHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去7天的价格变化</div>
+					<div class="toolTip point">7天</div>
+				</el-tooltip>
+			);
+		},
+		onemonthHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去1个月的价格变化</div>
+					<div class="toolTip point">30天</div>
+				</el-tooltip>
+			);
+		},
+		threemonthHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去3个月的价格变化</div>
+					<div class="toolTip point">90天</div>
+				</el-tooltip>
+			);
+		},
+		sevendayPriceHeader(createElement, { column, index }) {
+			return (
+				<el-tooltip
+					class="item"
+					effect="dark"
+					placement="top"
+					width="50"
+				>
+					<div slot="content">过去7天价格变化趋势</div>
+					<div class="toolTip point">7天价格</div>
+				</el-tooltip>
+			);
+		},
 		handleSelect(key, keyPath) {},
 		test(row, column, cell, event) {
 			// console.log(row, column, cell, event);
@@ -2175,7 +2396,10 @@ export default {
 		//coin 详情
 		showCoinInfo(val) {
 			console.log(val);
-			this.$router.push({ path: '/coinInfo/basicInfo', query: { name: 'private' } });
+			this.$router.push({
+				path: '/coinInfo/basicInfo',
+				query: { name: 'private' }
+			});
 		},
 		// 绘制表格
 		drawLine(val) {
@@ -2195,10 +2419,6 @@ export default {
 					color: ['#37A2DA'],
 					tooltip: {
 						trigger: 'axis',
-						axisPointer: {
-							animation: true
-						},
-						show: true,
 						position: ['0%', '0%']
 					},
 					legend: {
@@ -2259,12 +2479,12 @@ export default {
 	margin-top: 10px;
 	.coin-name {
 		color: #03a9f4;
-		border-bottom: 1px solid #03a9f4;
-		display: inline;
+		// border-bottom: 1px solid #03a9f4;
+		// display: inline;
 	}
 	.coin-name:hover {
 		color: #0d47a1;
-		border-bottom: 1px solid #0d47a1;
+		// border-bottom: 1px solid #0d47a1;
 	}
 }
 </style>
@@ -2278,9 +2498,6 @@ export default {
 				line-height: 28px;
 			}
 		}
-	}
-	.el-table thead {
-		color: #366092;
 	}
 }
 </style>

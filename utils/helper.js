@@ -3,7 +3,7 @@
  * @param {*any} func 验证对象
  */
 export function isFunc(func) {
-	return typeof func == "function";
+	return typeof func == 'function';
 }
 
 /**

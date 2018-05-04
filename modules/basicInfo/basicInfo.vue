@@ -1,37 +1,21 @@
 <template>
-  <div class="flex " style="flex-direction:column">
-    <coinPriceChange></coinPriceChange>
-    <bgInfo />
-    <shopInfo/>
-		<h2>相关链接</h2>
-    <coinLink :coin="list" :size="'30px'" class="coinLink"/>
-    <introduction />
+  <div>
+		<div class="flex aline" style="height:60px">
+			<coinLink :coin="list" :hover="true" :size="'23px'" :color="'#919195'" :content="true" :width="'25px'"/>
+		</div>
+		<introduction />
   </div>
 </template>
 
 <script>
-// import {
-// 	coinPriceChange,
-// 	bgInfo,
-// 	shopInfo,
-// 	coinLink,
-// 	introduction
-// } from './index.js';
-import coinPriceChange from './coinPriceChange';
-import bgInfo from './bgInfo';
-import shopInfo from './shopInfo';
-import coinLink from './coinLink';
-import introduction from './introduction';
+import { coinLink } from '../coinInfo/index';
+import introduction from './introduction.vue';
 import { change } from '~/utils/coinIcon.js';
 export default {
 	components: {
-		coinPriceChange,
-		bgInfo,
-		shopInfo,
 		coinLink,
 		introduction
 	},
-	created() {},
 	computed: {
 		list() {
 			return change(this.coinList);
@@ -83,9 +67,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.coinLink {
-	margin: 10px 0 20px 0;
-}
+
 </style>
 
 

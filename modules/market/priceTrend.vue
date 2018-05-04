@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex " style="flex-direction:column">
     <coinPriceChange></coinPriceChange>
     <bgInfo />
     <movements />

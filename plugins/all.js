@@ -2,7 +2,7 @@
  * @Author: insane.luojie
  * @Date:   2017-09-30 09:33:33
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-04-23 16:52:05
+ * @Last Modified time: 2018-04-27 21:00:12
  */
 import api from './api';
 import '../static/style';
@@ -11,8 +11,6 @@ import Element from 'element-ui';
 import echarts from 'echarts';
 import MuseUI from 'muse-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import 'muse-ui/dist/muse-ui.css';
-import 'muse-ui/dist/theme-teal.css';
 
 export default function(vue) {
 	vue.prototype.$echarts = echarts;

@@ -1,31 +1,61 @@
 <template>
-  <div>
+  <div class="flex aline">
     <!-- 所有连接icon
     -site/twitter/telegram/github/reddit/facebook/whitepaper/blockSite/slack/youtube/blog/bitcointalk
     -网站/推特/电报群/github/reddit/脸书/白皮书/区块站/slack/youtube/博客/论坛
     -->
-    <h2 class="bg">相关链接</h2>
-      <div class="link">
-        <icon type="site" class="link-icon point"/>
-        <icon type="twitter" class="link-icon point"/>
-        <icon type="telegram" class="link-icon point"/>
-        <icon type="github" class="link-icon point"/>
-        <icon type="reddit" class="link-icon point"/>
-        <icon type="facebook" class="link-icon point"/>
-        <icon type="whitepaper" class="link-icon point"/>
-        <icon type="blockSite" class="link-icon point"/>
-        <icon type="slack" class="link-icon point"/>
-        <icon type="youtube" class="link-icon point"/>
-        <icon type="bitcointalk" class="link-icon point"/>
-        <icon type="blog" class="link-icon point"/>
+      <div class="link flex aline" v-for="(item, index) in coin" :key="index" :style="{width:width}">
+				<el-tooltip class="item" effect="dark" :content="item.entire" placement="top" v-if="content===true">
+					<icon :type="item.name" :style="{color,fontSize:size}" :class="{hover: hover}" class="point"/>
+    		</el-tooltip>
+				<icon :type="item.name" :style="{color,fontSize:size}" :class="{hover: hover}" v-if="content===false" class="point"/>
+				<span v-if="content===false" style="margin-top:10px">{{item.entire}}</span>
       </div>
   </div>
 </template>
 
+<script>
+export default {
+	props: {
+		color: {
+			default: '#7baee8',
+			type: String
+		},
+		size: {
+			type: String
+		},
+		coin: {
+			required: true,
+			type: Array
+		},
+		hover: {
+			type: Boolean
+		},
+		content: {
+			default: false
+		},
+		width: {
+			default: '100px'
+		}
+	},
+	created() {}
+};
+</script>
+
+
 <style lang="less" scoped>
-.link-icon {
-	color: #7baee8;
-	font-size: 30px !important;
+.link {
+	justify-content: center;
+	flex-direction: column;
+	.hover {
+		transition: all 0.2s;
+	}
 }
 </style>
+<style lang="less">
+.hover:hover {
+	color: #4a90e0 !important;
+}
+</style>
+
 

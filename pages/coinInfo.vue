@@ -4,18 +4,19 @@
     <div class="main-content">
       <router-view></router-view>
     </div>
+		<basicInfo style="flex:1"/>
   </div>
 </template>
 
 <script>
 import { coinMenu } from '~/modules/coinMenu/index';
+import basicInfo from '~/modules/basicInfo/basicInfo.vue';
 export default {
 	components: {
-		coinMenu
+		coinMenu,
+		basicInfo
 	},
-	created() {
-		console.log(1);
-	}
+	created() {}
 };
 </script>
 

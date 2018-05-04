@@ -35,10 +35,11 @@ export default {
 		return {
 			menuList: [
 				{ router: '/coinInfo/basicInfo', value: '基本信息' },
-				{ router: '/coinInfo/value', value: '价值评估' },
 				{ router: '/coinInfo/market', value: '市场行情' },
-				{ router: '/coinInfo/account', value: '持有账户' },
-				{ router: '/coinInfo/heat', value: '项目热度' },
+				{ router: '/coinInfo/assetsDistribution', value: '资产分布' },
+				{ router: '/coinInfo/socialHeat', value: '社交热度' },
+				{ router: '/coinInfo/developHeat', value: '开发活跃度' },
+				{ router: '/coinInfo/heat', value: '公众关注度' },
 				{ router: '/coinInfo/news', value: '新闻资讯' }
 			]
 		};
