@@ -25,17 +25,18 @@ export default {
 	background: @backgroundColor;
 	width: 100%;
 	.site-nav {
-		min-width: 1900px;
+		// min-width: 1900px;
 	}
 }
 
 .app,
 .main {
 	position: relative;
+	width: 100%;
 }
 
 .main {
-	width: 1850px;
+	// width: 1850px;
 	margin: 0 auto;
 }
 </style>

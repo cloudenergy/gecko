@@ -41,6 +41,7 @@ export default {
 	.active {
 		background: #fff;
 		color: @theme;
+		border-radius: 5px 5px 0 0;
 	}
 }
 </style>

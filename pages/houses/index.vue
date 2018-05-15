@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<topPrompt />
+		<!-- <topPrompt /> -->
 		<selectTable/>
 	</div>
 </template>

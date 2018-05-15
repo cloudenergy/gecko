@@ -39,7 +39,7 @@ export default {
 	color: #e1ebf6;
 	height: 40px;
 	.set-margin {
-		width: 1850px;
+		// width: 1850px;
 		margin: 0 auto;
 		.top-bar {
 			justify-content: space-between;
@@ -51,7 +51,7 @@ export default {
 	height: 78px;
 	.image {
 		height: 78px;
-		width: 1850px;
+		// width: 1850px;
 		margin: 0 auto;
 		img {
 			height: 40px;

@@ -20,7 +20,7 @@ export default {
 					a.push(i);
 				}
 				myChart.setOption({
-					color: ['#4a90e2'],
+					color: ['#4a90e2','#ef5350','#43a047','#fbc02d'],
 					xAxis: {
 						type: 'category',
 						data: a,
@@ -63,7 +63,9 @@ export default {
 						show: true,
 						backgroundColor: '#fbfafa'
 					},
-					tooltip: {},
+					tooltip: {
+            trigger: 'axis',
+          },
 					series: [
 						{
 							showAllSymbol: true,
@@ -87,7 +89,35 @@ export default {
 									show: true,
 									position: 'top'
 								}
-							}
+              },
+              symbol:'circle',
+              symbolSize:10
+						},
+						{
+							showAllSymbol: true,
+							data: [
+								20300,
+								10200,
+								22400,
+								33200,
+								60900,
+								106000,
+								72000,
+								83000,
+								99000,
+								50000,
+								31000,
+								127000
+							],
+							type: 'line',
+							label: {
+								normal: {
+									show: true,
+									position: 'top'
+								}
+              },
+              symbol:'circle',
+              symbolSize:10
 						}
 					]
 				});
