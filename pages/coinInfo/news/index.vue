@@ -42,6 +42,7 @@
     },
     methods: {
       link() {
+        console.log(1)
         window.open("http://www.w3school.com.cn")
       },
       // toggle
